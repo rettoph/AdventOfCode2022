@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdventOfCode.Common
+namespace AdventOfCode2022.Common.Enums
 {
     public enum Day
     {

@@ -1,7 +1,8 @@
-﻿using AdventOfCode2022.Day01;
+﻿using AdventOfCode2022.Common.Enums;
+using AdventOfCode2022.Common.Interfaces;
 using System.Diagnostics;
 
-namespace AdventOfCode.Common
+namespace AdventOfCode2022.Solvers
 {
     public class Solver
     {
@@ -22,23 +23,41 @@ namespace AdventOfCode.Common
 
         public static string SolvePartOne(Day day, string input)
         {
-            return _solvers[day].PartOne(input).ToString() ?? string.Empty;
+            return _solvers[day].PartOne(SplitToLines(input)).ToString() ?? string.Empty;
         }
 
         public static string SolvePartTwo(Day day, string input)
         {
-            return _solvers[day].PartTwo(input).ToString() ?? string.Empty;
+            return _solvers[day].PartTwo(SplitToLines(input)).ToString() ?? string.Empty;
         }
 
         static Solver()
         {
             Solver.Register<DayOneSolver>(Day.One);
+            Solver.Register<DayTwoSolver>(Day.Two);
         }
 
         public static void Register<TSolver>(Day day)
             where TSolver : ISolver, new()
         {
             _solvers.Add(day, new TSolver());
+        }
+
+        public static IEnumerable<string> SplitToLines(string input)
+        {
+            if (input == null)
+            {
+                yield break;
+            }
+
+            using (System.IO.StringReader reader = new System.IO.StringReader(input))
+            {
+                string? line;
+                while ((line = reader.ReadLine()) is not null)
+                {
+                    yield return line;
+                }
+            }
         }
     }
 }

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdventOfCode2022.Day01
+namespace AdventOfCode2022.Common.Enums
 {
-    public class Food
+    public enum Part
     {
-        public required int Calories { get; init; }
+        One = 1,
+        Two
     }
 }

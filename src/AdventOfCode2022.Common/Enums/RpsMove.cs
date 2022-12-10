@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdventOfCode.Common
+namespace AdventOfCode2022.Common.Enums
 {
-    public enum Part
+    public enum RpsMove
     {
-        One = 1,
-        Two
+        Rock = 1,
+        Paper = 2,
+        Scissors = 3
     }
 }

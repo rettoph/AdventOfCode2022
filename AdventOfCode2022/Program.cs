@@ -1,4 +1,6 @@
-﻿using AdventOfCode.Common;
+﻿using AdventOfCode2022.Common;
+using AdventOfCode2022.Common.Enums;
+using AdventOfCode2022.Solvers;
 using System.CommandLine;
 
 var dayOption = new Option<Day>(
@@ -31,7 +33,7 @@ root.SetHandler(Solve, dayOption, partOption, inputOption);
 
 root.Invoke(args);
 
-Task Solve(Day day, Part part, FileInfo input)
+static Task Solve(Day day, Part part, FileInfo input)
 {
     string solution = Solver.Solve(
         day: day, 

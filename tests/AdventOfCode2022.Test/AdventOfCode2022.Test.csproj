@@ -10,10 +10,14 @@
 
   <ItemGroup>
     <None Remove="input\input_day01.txt" />
+    <None Remove="input\input_day02.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="input\input_day01.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="input\input_day02.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -27,7 +31,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\AdventOfCode2022\AdventOfCode2022.csproj" />
-    <ProjectReference Include="..\..\src\AdventOfCode.Common\AdventOfCode.Common.csproj" />
   </ItemGroup>
 
 </Project>
