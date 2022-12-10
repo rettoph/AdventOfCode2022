@@ -1,16 +1,12 @@
 {
   "profiles": {
-    "WSL": {
-      "commandName": "WSL2",
-      "distributionName": ""
-    },
     "Day 01 Part 02": {
       "commandName": "Project",
-      "commandLineArgs": "--day 1 --part 2 --input \"$(SolutionDir)\\input\\input_day01_part01.txt\""
+      "commandLineArgs": "--day 1 --part 2 --input \"$(SolutionDir)\\input\\input_day01.txt\""
     },
     "Day 01 Part 01": {
       "commandName": "Project",
-      "commandLineArgs": "--day 1 --part 1 --input \"$(SolutionDir)\\input\\input_day01_part01.txt\""
+      "commandLineArgs": "--day 1 --part 1 --input \"$(SolutionDir)\\input\\input_day01.txt\""
     }
   }
 }
