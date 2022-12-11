@@ -42,6 +42,7 @@ namespace AdventOfCode2022.Solvers
             Solver.Register<DayOneSolver>(Day.One);
             Solver.Register<DayTwoSolver>(Day.Two);
             Solver.Register<DayThreeSolver>(Day.Three);
+            Solver.Register<DayFourSolver>(Day.Four);
         }
 
         public static void Register<TSolver>(Day day)

@@ -1,5 +1,13 @@
 {
   "profiles": {
+    "Day 04 Part 02": {
+      "commandName": "Project",
+      "commandLineArgs": "--day 4 --part 2 --input \"$(SolutionDir)\\input\\input_day04.txt\""
+    },
+    "Day 04 Part 01": {
+      "commandName": "Project",
+      "commandLineArgs": "--day 4 --part 1 --input \"$(SolutionDir)\\input\\input_day04.txt\""
+    },
     "Day 03 Part 02": {
       "commandName": "Project",
       "commandLineArgs": "--day 3 --part 2 --input \"$(SolutionDir)\\input\\input_day03.txt\""

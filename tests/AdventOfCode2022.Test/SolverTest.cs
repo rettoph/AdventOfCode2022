@@ -13,6 +13,8 @@ namespace AdventOfCode2022.Test
         [DataRow(Day.Two, Part.Two, "input/input_day02.txt", "11756")]
         [DataRow(Day.Three, Part.One, "input/input_day03.txt", "7850")]
         [DataRow(Day.Three, Part.Two, "input/input_day03.txt", "2581")]
+        [DataRow(Day.Four, Part.One, "input/input_day04.txt", "511")]
+        [DataRow(Day.Four, Part.Two, "input/input_day04.txt", "821")]
         public void TestSolver(Day day, Part part, string input, string solution)
         {
             string result = Solver.Solve(day, part, File.ReadAllText(input));
