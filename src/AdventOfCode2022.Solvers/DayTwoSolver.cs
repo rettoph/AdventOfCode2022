@@ -37,61 +37,46 @@ namespace AdventOfCode2022.Solvers
             ['Z'] = RpsResult.Win
         };
 
-        public object PartOne(IEnumerable<string> input)
+        public object PartOne(StringReader input)
         {
-            return LoadGamePartOne(input).GetTotalScore(RpsPlayer.User);
+            return LoadGame(input, PartOneMoveSelector).GetTotalScore(RpsPlayer.User);
         }
 
-        public object PartTwo(IEnumerable<string> input)
+        public object PartTwo(StringReader input)
         {
-            return LoadGamePartTwo(input).GetTotalScore(RpsPlayer.User);
+            return LoadGame(input, PartTwoMoveSelector).GetTotalScore(RpsPlayer.User);
         }
 
-        private static RockPaperScissorsGame LoadGamePartOne(IEnumerable<string> input)
+        private static RockPaperScissorsGame LoadGame(StringReader input, Func<RpsMove, char, RpsMove> userMoveSelector)
         {
             RockPaperScissorsGame game = new();
 
-            foreach(string match in input)
+            string? line;
+            while((line = input.ReadLine()) is not null)
             {
-                if(match == string.Empty)
-                {
-                    continue;
-                }
+                RpsMove elfMove = ElfMap[line[0]];
+                RpsMove userMove = userMoveSelector(elfMove, line[2]);
 
-                game.AddMatch(
-                    elf: ElfMap[match[0]],
-                    user: PartOneUserMap[match[2]]);
+                game.AddMatch(elfMove, userMove);
             }
 
             return game;
         }
 
-        private static RockPaperScissorsGame LoadGamePartTwo(IEnumerable<string> input)
+        private RpsMove PartOneMoveSelector(RpsMove elf, char input)
         {
-            RockPaperScissorsGame game = new();
+            return PartOneUserMap[input];
+        }
 
-            foreach (string match in input)
+        private RpsMove PartTwoMoveSelector(RpsMove elf, char input)
+        {
+            return PartTwoUserMap[input] switch
             {
-                if (match == string.Empty)
-                {
-                    continue;
-                }
-
-                RpsMove elfMove = ElfMap[match[0]];
-                RpsMove userMove = PartTwoUserMap[match[2]] switch
-                {
-                    RpsResult.Win => RockPaperScissorsMatch.WinningHands[elfMove],
-                    RpsResult.Lose => RockPaperScissorsMatch.WinningHands[RockPaperScissorsMatch.WinningHands[elfMove]],
-                    RpsResult.Draw => elfMove,
-                    _ => throw new UnreachableException()
-                };
-
-                game.AddMatch(
-                    elf: elfMove,
-                    user: userMove);
-            }
-
-            return game;
+                RpsResult.Win => RockPaperScissorsMatch.WinningHands[elf],
+                RpsResult.Lose => RockPaperScissorsMatch.WinningHands[RockPaperScissorsMatch.WinningHands[elf]],
+                RpsResult.Draw => elf,
+                _ => throw new UnreachableException()
+            };
         }
     }
 }

@@ -12,53 +12,30 @@ namespace AdventOfCode2022.Solvers
 {
     internal sealed class DayOneSolver : ISolver
     {
-        public object PartOne(IEnumerable<string> input)
+        public object PartOne(StringReader input)
         {
             return LoadFood(input).Max(x => x.Food.TotalCalories);
         }
 
-        public object PartTwo(IEnumerable<string> input)
+        public object PartTwo(StringReader input)
         {
             return LoadFood(input).OrderByDescending(x => x.Food.TotalCalories)
                 .Take(3)
                 .Sum(x => x.Food.TotalCalories);
         }
 
-        public static IList<Elf> LoadFood(IEnumerable<string> input)
+        public static IList<Elf> LoadFood(StringReader input)
         {
             List<Elf> elves = new();
-            List<int> foodCaloriesValues = new();
 
-            foreach (string line in input)
+            while(input.Peek() != -1)
             {
-                if (line == string.Empty)
-                { // New elf delim, add elf
-                    CreateElf(elves, foodCaloriesValues);
-
-                    continue;
-                }
-
-                if (int.TryParse(line, out int foodCaloriesValue))
-                {
-                    foodCaloriesValues.Add(foodCaloriesValue);
-                }
-            }
-
-            if (foodCaloriesValues.Any())
-            { // There was a final elf at EOF
-                CreateElf(elves, foodCaloriesValues);
+                Elf elf = new();
+                elf.Food.Read(input);
+                elves.Add(elf);
             }
 
             return elves;
-        }
-
-        private static void CreateElf(IList<Elf> elves, IList<int> calories)
-        {
-            var elf = new Elf();
-            elf.Food.Load(calories);
-            calories.Clear();
-
-            elves.Add(elf);
         }
     }
 }

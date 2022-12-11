@@ -37,6 +37,21 @@ namespace AdventOfCode2022.Common.Entities
             }
         }
 
+        public void Read(StringReader input)
+        {
+            string? line;
+            while((line = input.ReadLine()) is not null && line != string.Empty)
+            {
+                if(int.TryParse(line, out var calories))
+                {
+                    this.Add(new Food()
+                    {
+                        Calories = calories
+                    });
+                }
+            }
+        }
+
         #region IList<Food> Implementation
         public Food this[int index] { get => _food[index]; set => _food[index] = value; }
 

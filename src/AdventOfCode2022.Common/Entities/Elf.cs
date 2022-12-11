@@ -10,8 +10,12 @@ namespace AdventOfCode2022.Common.Entities
     {
         public FoodInventory Food { get; }
 
+        public string Name { get; }
+
         public Elf()
         {
+            this.Name = Guid.NewGuid().ToString();
+
             this.Food = new FoodInventory();
         }
     }

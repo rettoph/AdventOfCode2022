@@ -23,12 +23,18 @@ namespace AdventOfCode2022.Solvers
 
         public static string SolvePartOne(Day day, string input)
         {
-            return _solvers[day].PartOne(SplitToLines(input)).ToString() ?? string.Empty;
+            using(StringReader reader = new StringReader(input))
+            {
+                return _solvers[day].PartOne(reader).ToString() ?? string.Empty;
+            }
         }
 
         public static string SolvePartTwo(Day day, string input)
         {
-            return _solvers[day].PartTwo(SplitToLines(input)).ToString() ?? string.Empty;
+            using (StringReader reader = new StringReader(input))
+            {
+                return _solvers[day].PartTwo(reader).ToString() ?? string.Empty;
+            }
         }
 
         static Solver()
@@ -41,23 +47,6 @@ namespace AdventOfCode2022.Solvers
             where TSolver : ISolver, new()
         {
             _solvers.Add(day, new TSolver());
-        }
-
-        public static IEnumerable<string> SplitToLines(string input)
-        {
-            if (input == null)
-            {
-                yield break;
-            }
-
-            using (System.IO.StringReader reader = new System.IO.StringReader(input))
-            {
-                string? line;
-                while ((line = reader.ReadLine()) is not null)
-                {
-                    yield return line;
-                }
-            }
         }
     }
 }
