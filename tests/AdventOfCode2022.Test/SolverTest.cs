@@ -11,11 +11,13 @@ namespace AdventOfCode2022.Test
         [DataRow(Day.One, Part.Two, "input/input_day01.txt", "203420")]
         [DataRow(Day.Two, Part.One, "input/input_day02.txt", "12645")]
         [DataRow(Day.Two, Part.Two, "input/input_day02.txt", "11756")]
+        [DataRow(Day.Three, Part.One, "input/input_day03.txt", "7850")]
+        [DataRow(Day.Three, Part.Two, "input/input_day03.txt", "2581")]
         public void TestSolver(Day day, Part part, string input, string solution)
         {
             string result = Solver.Solve(day, part, File.ReadAllText(input));
 
-            Assert.AreEqual(result, solution);
+            Assert.AreEqual(solution, result);
         }
     }
 }
